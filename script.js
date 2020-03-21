@@ -1,10 +1,29 @@
+//Скролл active
+var navigationScroll = function(){
+    document.addEventListener('scroll', onScroll)
+}
+var onScroll = function(){
+    const header = document.querySelector('.header-1');
+    const curPos = window.scrollY + header.offsetHeight;
+    const sections = document.querySelectorAll('body>section');
+    const links = document.querySelectorAll('.header__nav-1 a')
+    sections.forEach((section)=>{
+        if (section.offsetTop <= curPos && (section.offsetTop +section.offsetHeight)>curPos){
+            links.forEach((link)=>{
+                link.classList.remove('active')
+                if (section.getAttribute('id') === link.getAttribute('href').substring(1)){
+                    link.classList.add('active')
+                }
+            })
+        }
+    })
+}
+navigationScroll();
+
 //Класс active для HEADER
 const menu = document.querySelector('.header__nav-1')
-menu.addEventListener('click', (event) => {
-    //по клику для каждого элемента удаляем стиль.
-        menu.querySelectorAll('li>a').forEach(el => el.classList.remove('active'));
-        // но для элемента, на который указали, добавляем стиль.    
-         event.target.classList.add('active')
+menu.addEventListener('click', (event) => { 
+         event.target.classList.add('active');
 })
 ;
 
@@ -40,7 +59,7 @@ btn1.addEventListener('click', (event) => {
     }else {
         const subject = document.querySelector('.subject').value.toString();
         const description = document.querySelector('.description').value.toString();
-    if (subject != ''){
+    if (subject != '' || description != ''){
         document.querySelector('.sub-res').innerText = 'Тема: ' + subject;
         document.querySelector('.desc-res').innerText = 'Описание: ' + description;
     } else {
@@ -180,30 +199,5 @@ slide.addEventListener('transitionend', ()=>{
         count = imgs.length-3;
         slide.style.transform = 'translateX('+(-size*count) + 'px';
      }
-
 })
 
-var navigationScroll = function(){
-    document.addEventListener('scroll', onScroll)
-}
-var onScroll = function(){
-    const header = document.querySelector('.header-1');
-    
-    const curPos = window.scrollY + header.offsetHeight;
-    console.log(header.offsetHeight)
-    const sections = document.querySelectorAll('body>section');
-  
-    const links = document.querySelectorAll('.header__nav-1 a')
-    sections.forEach((section)=>{
-          
-        if (section.offsetTop <= curPos && (section.offsetTop +section.offsetHeight)>curPos){
-            links.forEach((link)=>{
-                link.classList.remove('active')
-                if (section.getAttribute('id') === link.getAttribute('href').substring(1)){
-                    link.classList.add('active')
-                }
-            })
-        }
-    })
-}
-navigationScroll()
