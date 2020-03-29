@@ -119,6 +119,7 @@
     position: fixed;
     transform: translateX(-279px);
     transition: ease 1s;
+    display: block;
     z-index: 110;
     width: 278px;
     background: #2D303A;
