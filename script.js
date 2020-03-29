@@ -1,3 +1,4 @@
+
 //Скролл active
 var navigationScroll = function(){
     document.addEventListener('scroll', onScroll)
@@ -201,3 +202,30 @@ slide.addEventListener('transitionend', ()=>{
      }
 })
 
+//Hamburger menu
+document.querySelector('.hamburger').addEventListener('click', ()=>{
+    document.querySelector('.opacity-1').style.display='block'
+    document.querySelector('.opacity-1').style.transform =  'translateX(278px)';
+    document.querySelector('.opacity-1').style.opacity = '50%';
+    document.querySelector('.navigation').style.transform = 'translateX(0)';
+    document.querySelector('body').style.overflow = 'hidden'
+})
+document.querySelector('.hamburger-1').addEventListener('click', ()=>{
+    document.querySelector('.opacity-1').style.display='none';
+    document.querySelector('.opacity-1').style.transform =  'translateX(835px)';
+    document.querySelector('.opacity-1').style.opacity = '0%';
+    document.querySelector('.navigation').style.transform = 'translateX(-279px)';
+    document.querySelector('body').style.overflow = 'visible'
+})
+
+
+var navigation1 = document.querySelector('.header__nav-12');
+navigation1.addEventListener('click',(event) =>{
+    navigation1.querySelectorAll('li>a').forEach(el => el.classList.remove('active'));
+    navigation1.querySelectorAll('li>a').forEach(el => el.classList.add('act'));
+    event.target.classList.add('active');
+    event.target.classList.remove('act')
+    document.querySelector('.navigation').style.transform = 'translateX(-279px)';
+    document.querySelector('.opacity-1').style.transform =  'translateX(835px)';
+    document.querySelector('body').style.overflow = 'visible'  
+})
